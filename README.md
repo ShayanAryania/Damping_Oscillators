@@ -1,268 +1,90 @@
-This script analyzes three different cases of harmonic oscillation:
+# Harmonic Oscillation Simulations  
 
-Damped Harmonic Oscillator
-Phase Space Representation of the Damped Oscillator
-Forced Damped Oscillation
-Each section uses Python’s numpy and matplotlib libraries to compute and visualize the oscillations.
+This repository contains Python scripts for simulating and visualizing different types of harmonic oscillations using `numpy` and `matplotlib`.  
 
-1. Damped Harmonic Oscillator
-This section simulates the motion of a damped harmonic oscillator, where the system loses energy over time due to damping.
+## Overview  
 
-Mathematical Model:
+The code implements three different cases of oscillatory motion:  
 
-The equation governing the motion is:
+1. **Damped Harmonic Oscillator**  
+2. **Phase Space Representation of the Damped Oscillator**  
+3. **Forced Damped Oscillation**  
 
-x
-(
-t
-)
-=
-A
-e
-−
-β
-t
-sin
-⁡
-(
-w
-1
-t
-−
-α
-)
-x(t)=Ae 
-−βt
- sin(w 
-1
-​	
- t−α)
-where:
+Each section computes and visualizes the oscillatory motion with different damping and external force conditions.  
 
-A
-A is the initial amplitude
-β
-β is the damping coefficient
-α
-α is the phase shift
-w
-0
-w 
-0
-​	
-  is the natural frequency
-w
-1
-=
-w
-0
-2
-−
-β
-2
-w 
-1
-​	
- = 
-w 
-0
-2
-​	
- −β 
-2
- 
-​	
-  is the damped frequency
-The script:
+---
 
-Defines the parameters for damping and frequency.
-Iterates over time values, computing the displacement 
-x
-(
-t
-)
-x(t) at each step.
-Stores the values in arrays for plotting.
-The trajectory is plotted, showing an oscillation that decays exponentially over time.
-2. Phase Space Representation of the Damped Oscillator
-This section plots the phase space of the damped oscillator, representing velocity (
-x
-˙
-x
-˙
- ) versus displacement (
-x
-x).
+## 1. Damped Harmonic Oscillator  
 
-Mathematical Model:
+This simulation models a **damped harmonic oscillator**, where the system gradually loses energy due to damping.  
 
-Velocity is computed as:
+### **Equation of Motion:**  
 
-x
-˙
-=
-−
-β
-A
-e
-−
-β
-t
-sin
-⁡
-(
-w
-1
-t
-−
-α
-)
-+
-A
-w
-1
-e
-−
-β
-t
-cos
-⁡
-(
-w
-1
-t
-−
-α
-)
-x
-˙
- =−βAe 
-−βt
- sin(w 
-1
-​	
- t−α)+Aw 
-1
-​	
- e 
-−βt
- cos(w 
-1
-​	
- t−α)
-The script:
+\[
+x(t) = A e^{-\beta t} \sin(w_1 t - \alpha)
+\]
 
-Computes both 
-x
-(
-t
-)
-x(t) and its derivative 
-x
-˙
-(
-t
-)
-x
-˙
- (t).
-Plots the phase space trajectory, which spirals inward, indicating energy dissipation due to damping.
-3. Forced Damped Oscillation
-This section simulates a damped oscillator subjected to an external periodic driving force.
+where:  
+- \( A \) = Initial amplitude  
+- \( \beta \) = Damping coefficient  
+- \( \alpha \) = Phase shift  
+- \( w_0 \) = Natural frequency  
+- \( w_1 = \sqrt{w_0^2 - \beta^2} \) = Damped frequency  
 
-Mathematical Model:
+### **Implementation:**  
+- Defines parameters for damping and frequency.  
+- Computes \( x(t) \) iteratively for a given time range.  
+- Plots the displacement vs. time graph, showing **damped oscillations**.  
 
-The total displacement consists of:
+---
 
-Complementary Solution (natural response):
-x
-c
-=
-A
-e
-−
-β
-t
-cos
-⁡
-(
-w
-1
-t
-−
-α
-)
-x 
-c
-​	
- =Ae 
-−βt
- cos(w 
-1
-​	
- t−α)
-Particular Solution (steady-state response):
-x
-p
-=
-F
-0
-cos
-⁡
-(
-w
-t
-)
-(
-w
-0
-2
-−
-w
-2
-)
-2
-+
-(
-4
-β
-2
-w
-2
-)
-x 
-p
-​	
- = 
-(w 
-0
-2
-​	
- −w 
-2
- ) 
-2
- +(4β 
-2
- w 
-2
- )
-​	
- 
-F 
-0
-​	
- cos(wt)
-​	
- 
-The script:
+## 2. Phase Space Representation of the Damped Oscillator  
 
-Defines the parameters for the driving force.
-Computes the general and particular solutions for 
-x
-(
-t
-)
-x(t).
-Plots the total response (solid line) and the steady-state response (dashed line) over time.
-The graph shows transient oscillations that decay due to damping, followed by a steady-state oscillation at the driving frequency.
+This section plots **velocity (\(\dot{x}\)) vs. displacement (\(x\))** to show the phase space trajectory of the damped oscillator.  
+
+### **Velocity Equation:**  
+
+\[
+\dot{x} = -\beta A e^{-\beta t} \sin(w_1 t - \alpha) + A w_1 e^{-\beta t} \cos(w_1 t - \alpha)
+\]
+
+### **Implementation:**  
+- Computes both displacement \( x(t) \) and velocity \( \dot{x}(t) \).  
+- Plots **phase space** trajectory, showing an inward spiral due to damping.  
+
+---
+
+## 3. Forced Damped Oscillation  
+
+This section models an oscillator subjected to an external **periodic driving force**.  
+
+### **Equation of Motion:**  
+
+The total displacement consists of:  
+
+1. **Natural Response (Complementary Solution):**  
+   \[
+   x_c = A e^{-\beta t} \cos(w_1 t - \alpha)
+   \]
+2. **Steady-State Response (Particular Solution):**  
+   \[
+   x_p = \frac{F_0 \cos(w t)}{\sqrt{(w_0^2 - w^2)^2 + (4 \beta^2 w^2)}}
+   \]
+
+### **Implementation:**  
+- Defines the parameters for the driving force.  
+- Computes the **total displacement** by summing the natural and particular solutions.  
+- Plots:
+  - **Total motion** (solid line)  
+  - **Steady-state response** (dashed line)  
+
+This demonstrates how transient oscillations decay over time, leaving only the steady-state oscillation.  
+
+---
+
+## **Requirements**  
+
+Ensure you have the following Python libraries installed before running the scripts:  
+
+```bash
+pip install numpy matplotlib
